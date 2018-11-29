@@ -5,44 +5,15 @@ import YOUTUBE_API_KEY from '../config/youtube.js';
 import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 
-// const store = createStore(
-//   rootReducer,
-//   applyMiddleware(thunk)
-// );
-
-// var beginVideoSearch = () => ({
-//   type: BEGIN_VIDEO_SEARCH
-// });
-
-// var videoSearchSuccess = videos = () => ({
-//   type: VIDEO_SEARCH_SUCCESS,
-//   payload: {videos}
-// }) 
-
-// var videoSearchFailure = error => ({
-//   type: FETCH_PRODUCTS_FAILURE,
-//   payload: {error}
-// })
 
 var handleVideoSearch = (q) => {
-  // let options = {}
-
-  // return (dispatch) => {
-  //   dispatch(videosAreLoading(true));
-
-  //   fetch(s)
-  
-  // }
-  //TODO:  Write an asynchronous action to handle a video search!
-  // type: 'SEARCH_SUCCESS',
-  // videos: () => {
-  //   return (dispatch) => {
-  //     dispatch(searchYoutube({YOUTUBE_API_KEY, q}, () => {
-  //       dispatch()
-  //     });
-  //   }
-  // }
-
+  return (dispatch) => {
+      searchYouTube({key: YOUTUBE_API_KEY, query: q}, (data) => {
+        dispatch(changeVideoList(data));
+        dispatch(changeVideo(data[0]));
+      });
+  }
 };
+
 
 export default handleVideoSearch;
